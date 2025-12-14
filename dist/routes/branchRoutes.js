@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const branchController_1 = require("../controllers/branchController");
+const authMiddleware_1 = require("../middleware/authMiddleware");
+const router = (0, express_1.Router)();
+router.post('/', authMiddleware_1.authenticateToken, (0, authMiddleware_1.authorizeRole)(['SUPER_ADMIN']), branchController_1.createBranch);
+router.get('/', authMiddleware_1.authenticateToken, branchController_1.getAllBranches);
+router.get('/:id', authMiddleware_1.authenticateToken, branchController_1.getBranchById);
+router.put('/:id', authMiddleware_1.authenticateToken, (0, authMiddleware_1.authorizeRole)(['SUPER_ADMIN']), branchController_1.updateBranch);
+router.delete('/:id', authMiddleware_1.authenticateToken, (0, authMiddleware_1.authorizeRole)(['SUPER_ADMIN']), branchController_1.deleteBranch);
+exports.default = router;

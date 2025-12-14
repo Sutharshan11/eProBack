@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const transferController_1 = require("../controllers/transferController");
+const authMiddleware_1 = require("../middleware/authMiddleware");
+const router = (0, express_1.Router)();
+router.post('/', authMiddleware_1.authenticateToken, transferController_1.requestTransfer);
+router.get('/', authMiddleware_1.authenticateToken, transferController_1.getTransfers);
+router.put('/:id/status', authMiddleware_1.authenticateToken, (0, authMiddleware_1.authorizeRole)(['SUPER_ADMIN', 'ADMIN']), transferController_1.updateTransferStatus);
+exports.default = router;
