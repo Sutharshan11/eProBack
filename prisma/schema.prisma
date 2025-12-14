@@ -76,6 +76,7 @@ model BoardOfSurveyCategory {
 model BoardOfSurveyYear {
   id        Int      @id @default(autoincrement())
   year      Int      @unique
+  assets    Asset[]
   createdAt DateTime @default(now())
 }
 
@@ -107,6 +108,9 @@ model Asset {
   
   boardOfSurveyCategoryId Int?
   boardOfSurveyCategory   BoardOfSurveyCategory?  @relation(fields: [boardOfSurveyCategoryId], references: [id])
+
+  boardOfSurveyYearId     Int?
+  boardOfSurveyYear       BoardOfSurveyYear?      @relation(fields: [boardOfSurveyYearId], references: [id])
   
   // Detailed Asset Information
   quantity                Int                     @default(1)

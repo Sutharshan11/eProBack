@@ -21,16 +21,33 @@ async function main() {
     console.log({ admin });
 
     // Create some branches
-    const branches = ['Rathnapura', 'Kandy', 'Galle', 'Naula', 'Awissawella', 'Aththnagalla', 'Nivithigala', 'Batticaloa', 'Jaffna'];
+    // Create Master Branches
+    const MASTER_BRANCHES = [
+        { name: 'Attanagalla', code: 'AC' },
+        { name: 'Badulla', code: 'BC' },
+        { name: 'Batticoloa', code: 'BTC' },
+        { name: 'Colombo', code: 'CC' },
+        { name: 'Galle', code: 'GC' },
+        { name: 'Gampola', code: 'GPC' },
+        { name: 'Jaffna', code: 'JC' },
+        { name: 'Kandy', code: 'KC' },
+        { name: 'Laggala', code: 'LC' },
+        { name: 'Maradana', code: 'MC' },
+        { name: 'Naula', code: 'NUC' },
+        { name: 'Nivithigala', code: 'NC' },
+        { name: 'Rathnapura', code: 'RC' },
+        { name: 'Rathnapura-YC', code: 'RYC' },
+        { name: 'Ratnapura-GSP', code: 'RGSP' },
+        { name: 'Senapura', code: 'SC' }
+    ];
 
-    for (const branch of branches) {
-        const branchName = branch; // Fix unused variable warning if any
+    for (const branch of MASTER_BRANCHES) {
         await prisma.branch.upsert({
-            where: { name: branchName },
+            where: { name: branch.name },
             update: {},
             create: {
-                name: branchName,
-                location: `${branchName} City`,
+                name: branch.name,
+                location: `${branch.name} (Code: ${branch.code})`,
             }
         });
     }
