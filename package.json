@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon --exec ts-node src/index.ts",
+    "postinstall": "prisma generate",
     "prisma:generate": "node -e \"require('@prisma/client')\"",
     "build": "node build.js",
     "start": "node dist/index.js",
