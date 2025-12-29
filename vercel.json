@@ -1,7 +1,7 @@
 {
     "version": 2,
-    "buildCommand": "npx prisma generate && npm run build",
-    "installCommand": "npm install",
+    "buildCommand": "npm run build",
+    "installCommand": "npm install --ignore-scripts && npx prisma generate",
     "env": {
         "NODE_ENV": "production"
     },
